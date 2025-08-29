@@ -1,0 +1,72 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+.container{
+    position: relative;
+    min-height: 100vh;
+    background-color: azure;
+}
+
+.card{
+    height: 300px;
+    width: 300px;
+    background-color: lightgreen;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    resize: both;
+    overflow: auto;
+    scrollbar-width: none;
+}
+
+.card .drag-bar{
+    height: 40px;
+    background-color: darkgreen;
+    cursor:move;
+}
+
+.card-title{
+    background-color: transparent;
+    outline: none;
+    border: none;
+    height: 30px;
+    font-size: 22px;
+    padding: 5px;
+    resize: none;
+    scrollbar-width: none;
+}
+
+.card-date{
+    padding-left: 5px;
+}
+
+
+.card-body {
+    padding-left: 5px; 
+    flex-basis: 100%;
+    padding: 15px;
+    overflow: hidden;
+}
+
+.card-body textarea{
+    resize: none;
+    display: block;
+    width: 100%;
+    min-height: 100%;
+    outline: none;
+    background: none;
+    border: none;
+    font-size: 18px;
+    scrollbar-width: none;
+}
+
+.card-delete{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer
+}
