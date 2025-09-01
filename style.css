@@ -11,9 +11,6 @@
 }
 
 .card{
-    height: 300px;
-    width: 300px;
-    background-color: lightgreen;
     position: fixed;
     display: flex;
     flex-direction: column;
@@ -25,8 +22,21 @@
 
 .card .drag-bar{
     height: 40px;
-    background-color: darkgreen;
     cursor:move;
+}
+
+.palette{
+    display: flex;
+    gap: 5px;
+    padding: 5px;
+}
+
+.palette span{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
 }
 
 .card-title{
