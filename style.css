@@ -1,8 +1,95 @@
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
+header{
+    text-align: center;
+    background-color: teal;
+    color: white;
+    padding: 10px 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    position: relative;
+    z-index: 10
+}
+
+header input{
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    padding: 0 10px;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+header .board_action{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+header .new_board{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 30px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+}
+
+.filter_action{
+    position: relative;
+}
+
+.filter_results{
+    position: absolute;
+    background-color: rgba(0, 128, 128, 0.466);
+    top: 40px;
+    height: auto;
+    width: 100%;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    transform-origin: top;
+    transform: scale(1, 0);
+    max-height: 200px;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.results_list{
+    list-style: none;
+    padding: 10px;
+    max-height: 100%;
+    overflow-y: auto;
+}
+
+.results_list li{
+    padding: 5px;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-bottom: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.results_list li:hover{
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.02);
+}
 
 .container{
     position: relative;

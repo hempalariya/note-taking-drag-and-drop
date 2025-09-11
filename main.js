@@ -1,14 +1,100 @@
 const container = document.querySelector('.container');
+const boardNameInput = document.querySelector('.board-name');
+const newBoardBtn = document.querySelector('.new_board')
+const filterInput = document.querySelector('.filter')
+
+let boards = JSON.parse(localStorage.getItem('boards') || '[]');
+let notes = JSON.parse(localStorage.getItem('notes') || '[]');
+
 
 let cardTop, cardLeft;
 
-let notes = JSON.parse(localStorage.getItem('notes') || '[]');
+let  activeBoard
+let activeBoardIndex
+
 
 const paletteColors  = {
     blue: { background: 'lightblue', dragBar: 'blue' },
     green: { background: 'lightgreen', dragBar: 'green' },
     orange: { background: 'lightcoral', dragBar: 'coral' },
 }
+
+function setActiveBoard(index){
+    activeBoard = boards[index]
+}
+
+if(boards.length === 0){
+    createBoard()
+}
+
+function createBoard(){
+    boards.forEach(board => board.activeBoard = false);
+    const defaultBoard = `board ${boards.length + 1}`;
+    boardNameInput.value = defaultBoard;
+    const board = {
+        boardId: Math.random(),
+        boardName: defaultBoard,
+        activeBoard: true
+    }
+
+    boards.push(board);
+    setActiveBoard(boards.length - 1);
+    localStorage.setItem('boards', JSON.stringify(boards));
+
+}
+
+function updateBoardName(board){
+    boardNameInput.addEventListener('change', () => {
+        const newName = boardNameInput.value.trim();
+        if(newName === '') {
+            boardNameInput.value = board.boardName;
+            alert('Board name cannot be empty');
+            return;
+        }
+        board.boardName = newName;
+        localStorage.setItem('boards', JSON.stringify(boards));
+    })
+}
+
+newBoardBtn.addEventListener('click', createBoard)
+
+
+filterInput.addEventListener('input', () => {
+    const filterText = filterInput.value.toLowerCase();
+    const filteredBoard = boards.filter(board => board.boardName.toLowerCase().includes(filterText));
+    let boardNotFound = false
+    if(filterText.length > 0 && filteredBoard.length === 0){
+        boardNotFound = true
+    }
+    console.log(filteredBoard , boardNotFound);
+    showFilteredList(filteredBoard, boardNotFound);
+})
+
+function showFilteredList(filteredBoard, boardNotFound){
+    const filterResults = document.querySelector('.filter_results');
+
+    if(boardNotFound){
+        filterResults.innerHTML = '<h3 style="padding: 10px;">Board Not Found</h3>';
+        filterResults.style.transform = 'scale(1, 1)   ';
+        return;
+    }
+
+    if(filteredBoard.length > 0){
+        const filterList = document.querySelector('.results_list');
+        filterResults.innerHTML = ''
+        filterList.innerHTML = '';
+    
+        filteredBoard.forEach(board => {
+            const liHTML = `
+                    <li data-id="${board.boardId}">${board.boardName}</li> 
+                    `
+    
+            filterList.insertAdjacentHTML('beforeend', liHTML);
+        })
+    }
+    filterResults.style.transform = 'scale(1, 1)';
+}
+
 
 if(notes.length === 0){
     const noNoteHtml = `
@@ -34,6 +120,7 @@ function createNote(e) {
     cardLeft = e.clientX + 'px';
 
     const note = {
+        boardName : activeBoard,
         noteId: Math.random(),
         cardTop,
         cardLeft,
@@ -138,7 +225,7 @@ function moveCard(card, note) {
         let newLeft = card.offsetLeft - newX;
 
 
-        newTop = Math.max(0, Math.min(newTop, container.clientHeight - card.offsetHeight));
+        newTop = Math.max(60, Math.min(newTop, container.clientHeight - card.offsetHeight));
         newLeft = Math.max(0, Math.min(newLeft, container.clientWidth - card.offsetWidth));
 
         cardTop = newTop + 'px';
