@@ -17,9 +17,8 @@ const paletteColors  = {
     orange: { background: 'lightcoral', dragBar: 'coral' },
 }
 
-function setActiveBoard(index){
-    activeBoard = boards[index]
-}
+
+// Board Management
 
 if(boards.length === 0){
     createBoard()
@@ -27,7 +26,7 @@ if(boards.length === 0){
 
 if(boards.length > 0){
     activeBoard = boards.find(board => board.activeBoard) || boards[0];
-    console.log(activeBoard);
+    updateBoardName(activeBoard);
 }
 
 function createBoard(){
@@ -114,8 +113,11 @@ function selectBoard(e){
     boardNameInput.value = activeBoard.boardName;
     filterInput.value = '';
     document.querySelector('.filter_results').style.transform = 'scale(1, 0)';
+    updateBoardName(activeBoard);
 }
 
+
+// Note Management
 
 if(notes.length === 0){
     const noNoteHtml = `
