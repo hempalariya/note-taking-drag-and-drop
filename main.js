@@ -9,9 +9,7 @@ let notes = JSON.parse(localStorage.getItem('notes') || '[]');
 
 let cardTop, cardLeft;
 
-let  activeBoard
-let activeBoardIndex
-
+let activeBoard;
 
 const paletteColors  = {
     blue: { background: 'lightblue', dragBar: 'blue' },
@@ -25,6 +23,11 @@ function setActiveBoard(index){
 
 if(boards.length === 0){
     createBoard()
+}
+
+if(boards.length > 0){
+    activeBoard = boards.find(board => board.activeBoard) || boards[0];
+    console.log(activeBoard);
 }
 
 function createBoard(){
@@ -66,7 +69,6 @@ filterInput.addEventListener('input', () => {
     if(filterText.length > 0 && filteredBoard.length === 0){
         boardNotFound = true
     }
-    console.log(filteredBoard , boardNotFound);
     showFilteredList(filteredBoard, boardNotFound);
 })
 
@@ -80,8 +82,11 @@ function showFilteredList(filteredBoard, boardNotFound){
     }
 
     if(filteredBoard.length > 0){
+        filterResults.innerHTML = `
+        <ul class="results_list"></ul>
+        `
         const filterList = document.querySelector('.results_list');
-        filterResults.innerHTML = ''
+
         filterList.innerHTML = '';
     
         filteredBoard.forEach(board => {
@@ -93,6 +98,22 @@ function showFilteredList(filteredBoard, boardNotFound){
         })
     }
     filterResults.style.transform = 'scale(1, 1)';
+
+    filterResults.addEventListener('click', selectBoard);
+}
+
+function selectBoard(e){
+    const li = e.target.closest('li');
+    console.log(li);
+    if(!li) return;
+    const boardId = li.dataset.id;
+    activeBoard = boards.find(board => board.boardId == boardId);
+    boards.forEach(board => board.activeBoard = false);
+    activeBoard.activeBoard = true;
+    localStorage.setItem('boards', JSON.stringify(boards));
+    boardNameInput.value = activeBoard.boardName;
+    filterInput.value = '';
+    document.querySelector('.filter_results').style.transform = 'scale(1, 0)';
 }
 
 
