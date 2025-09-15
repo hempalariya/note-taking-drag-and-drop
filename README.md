@@ -28,3 +28,4 @@ A simple web app for creating, editing, moving, and deleting notes using drag-an
 <img width="1920" height="1080" alt="Screenshot (102)" src="https://github.com/user-attachments/assets/6ce3e194-72af-4fb7-a553-7a7c45b3120b" />
 <img width="1920" height="1080" alt="Screenshot (100)" src="https://github.com/user-attachments/assets/ba0ba787-dd30-43bb-9a5d-934b77467dc8" />
 <img width="1920" height="1080" alt="Screenshot (102)" src="https://github.com/user-attachments/assets/04b076bc-139f-4828-98fd-45f2ae3e7113" />
+<img width="1920" height="1080" alt="Screenshot (103)" src="https://github.com/user-attachments/assets/50da1a81-3599-4904-a4f9-7a25b2b6497e" />
