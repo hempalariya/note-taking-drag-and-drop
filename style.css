@@ -36,7 +36,7 @@ header .board_action{
     gap: 10px;
 }
 
-header .new_board{
+header .new_board, header .board-delete{
     display: flex;
     align-items: center;
     justify-content: center;
