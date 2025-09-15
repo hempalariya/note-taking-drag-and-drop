@@ -23,3 +23,7 @@ A simple web app for creating, editing, moving, and deleting notes using drag-an
 - [`index.html`](index.html): Main HTML file.
 - [`style.css`](style.css): Styles for notes and layout.
 - [`main.js`](main.js): JavaScript logic for notes and drag-and-drop.
+
+## Project Screenshots
+<img width="1920" height="1080" alt="Screenshot (102)" src="https://github.com/user-attachments/assets/6ce3e194-72af-4fb7-a553-7a7c45b3120b" />
+
